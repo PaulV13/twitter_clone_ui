@@ -27,6 +27,7 @@ fun Toolbar(){
                 }
                 IconButton(onClick = { /*TODO*/ }) {
                     Image(
+                        modifier = Modifier.size(24.dp),
                         painter = painterResource(id = R.drawable.twitter),
                         contentDescription = "")
                 }
