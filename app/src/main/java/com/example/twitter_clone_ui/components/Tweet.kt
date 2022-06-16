@@ -1,7 +1,6 @@
 package com.example.twitter_clone_ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
@@ -25,8 +24,7 @@ import com.example.twitter_clone_ui.ui.theme.Twitter_clone_uiTheme
 fun Tweet(){
     Row(modifier = Modifier
         .fillMaxWidth()
-        .background(Color.Black)
-        .padding(4.dp)
+        .padding(8.dp)
     ) {
         Image(
             modifier = Modifier
@@ -42,7 +40,8 @@ fun Tweet(){
                 verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween) {
                 Row() {
-                    Text(text = "Tuitbol", style = MaterialTheme.typography.body1)
+                    Text(text = "Tuitbol", style = MaterialTheme.typography.body1,
+                        color = MaterialTheme.colors.surface)
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(text = "@FedePraml", style = MaterialTheme.typography.body2)
                     Spacer(modifier = Modifier.width(4.dp))
@@ -57,7 +56,9 @@ fun Tweet(){
             }
             Row(modifier = Modifier.fillMaxWidth()) {
                 Text(text = "Ayer compre 1/4 de cafe en un lugar nuevo y lo acabo de preparar. Simplemente delicioso. No se que adjetivos usar",
-                fontSize = 12.sp, style = MaterialTheme.typography.body1)
+                    fontSize = 12.sp,
+                    style = MaterialTheme.typography.body1,
+                    color = MaterialTheme.colors.surface)
             }
             Row(modifier = Modifier
                 .fillMaxWidth()

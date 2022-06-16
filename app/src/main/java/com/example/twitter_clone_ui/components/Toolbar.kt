@@ -7,7 +7,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,12 +34,12 @@ fun Toolbar(){
                     Icon(
                         modifier = Modifier.size(32.dp),
                         painter = painterResource(id = R.drawable.stars),
-                        tint = Color.White,
+                        tint = MaterialTheme.colors.surface,
                         contentDescription = "")
                 }
             }
         },
-        backgroundColor = Color.Black
+        backgroundColor = MaterialTheme.colors.background
     )
 }
 
