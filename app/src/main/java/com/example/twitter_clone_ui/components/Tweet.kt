@@ -22,7 +22,7 @@ import com.example.twitter_clone_ui.ui.theme.Twitter_clone_uiTheme
 fun Tweet(){
     Row(modifier = Modifier
         .fillMaxWidth()
-        .background(Color.Black)
+        .background(MaterialTheme.colors.background)
         .padding(4.dp)
     ) {
         IconButton(onClick = {}) {

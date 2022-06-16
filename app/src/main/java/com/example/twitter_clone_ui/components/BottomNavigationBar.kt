@@ -2,12 +2,14 @@ package com.example.twitter_clone_ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.twitter_clone_ui.R
 import com.example.twitter_clone_ui.screens.ScreenTimeLine
 import com.example.twitter_clone_ui.ui.theme.Twitter_clone_uiTheme
@@ -21,6 +23,7 @@ fun BottomNavigationBar(){
     BottomNavigation(backgroundColor = MaterialTheme.colors.background) {
         BottomNavigationItem(
             icon = { Icon(
+                modifier = Modifier.size(24.dp),
                 painter = painterResource(id = R.drawable.home),
                 contentDescription = "",
             tint = MaterialTheme.colors.surface)},
@@ -29,6 +32,7 @@ fun BottomNavigationBar(){
         )
         BottomNavigationItem(
             icon = { Icon(
+                modifier = Modifier.size(24.dp),
                 painter = painterResource(id = R.drawable.search),
                 contentDescription = "",
                 tint = MaterialTheme.colors.surface)},
@@ -37,6 +41,7 @@ fun BottomNavigationBar(){
         )
         BottomNavigationItem(
             icon = { Icon(
+                modifier = Modifier.size(24.dp),
                 painter = painterResource(id = R.drawable.mic),
                 contentDescription = "",
                 tint = MaterialTheme.colors.surface)},
@@ -45,6 +50,7 @@ fun BottomNavigationBar(){
         )
         BottomNavigationItem(
             icon = { Icon(
+                modifier = Modifier.size(24.dp),
                 painter = painterResource(id = R.drawable.notification),
                 contentDescription = "",
                 tint = MaterialTheme.colors.surface)},
@@ -53,6 +59,7 @@ fun BottomNavigationBar(){
         )
         BottomNavigationItem(
             icon = { Icon(
+                modifier = Modifier.size(24.dp),
                 painter = painterResource(id = R.drawable.message),
                 contentDescription = "",
                 tint = MaterialTheme.colors.surface)},
