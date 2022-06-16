@@ -1,10 +1,8 @@
 package com.example.twitter_clone_ui.screens
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.twitter_clone_ui.components.BottomNavigationBar
 import com.example.twitter_clone_ui.components.Toolbar
@@ -27,9 +25,7 @@ fun ScreenTimeLine(){
 fun ScreenTimeLinePreview(){
     Twitter_clone_uiTheme {
         // A surface container using the 'background' color from the theme
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-        ) {
+        Surface() {
             ScreenTimeLine()
         }
     }
