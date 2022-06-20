@@ -1,44 +1,68 @@
 package com.example.twitter_clone_ui.components
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import android.os.Build.VERSION.SDK_INT
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Autorenew
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.MoreVert
+import androidx.compose.material.icons.outlined.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.Coil
+import coil.ImageLoader
+import coil.compose.AsyncImage
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import com.example.twitter_clone_ui.R
 import com.example.twitter_clone_ui.ui.theme.Twitter_clone_uiTheme
 
 
 @Composable
-fun Tweet(){
+fun Tweet(
+    text: String,
+    image: Boolean,
+    imageUrl: String
+){
+    val imageLoader = ImageLoader.Builder(LocalContext.current)
+        .components {
+            if (SDK_INT >= 28) {
+                add(ImageDecoderDecoder.Factory())
+            } else {
+                add(GifDecoder.Factory())
+            }
+        }
+        .build()
+    Coil.setImageLoader(imageLoader)
+
     Column(modifier = Modifier
         .fillMaxWidth()
         .background(MaterialTheme.colors.background)
         ) {
+        Divider(color = Color.Gray, thickness = 1.dp)
         Row(modifier = Modifier.padding(8.dp)) {
-            Image(
-                modifier = Modifier
-                    .size(42.dp)
-                    .clip(CircleShape).
-                    clickable {  },
-                painter = painterResource(id = R.drawable.profile),
-                contentDescription = "Image profile" )
+            Box(modifier = Modifier.padding(8.dp)) {
+                Image(
+                    modifier = Modifier
+                        .size(42.dp)
+                        .clip(CircleShape)
+                        .clickable { },
+                    painter = painterResource(id = R.drawable.profile),
+                    contentDescription = "Image profile" )
+            }
             Column(modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally) {
                 Row(modifier = Modifier.fillMaxWidth(),
@@ -60,16 +84,29 @@ fun Tweet(){
                         tint = Color.Gray,
                         contentDescription = "Icon more")
                 }
-                Row(modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)) {
-                    Text(text = buildAnnotatedString {
-                        append("Ayer compre 1/4 de cafe en un lugar nuevo y lo acabo de preparar. Simplemente delicioso. No se que adjetivos usar ")
-                        withStyle(style = SpanStyle(MaterialTheme.colors.onSurface)) {
-                            append("@lijal")
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 8.dp)) {
+                    Column(modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp)) {
+                        if(text.isNotEmpty()){
+                            Text(text = text,
+                                fontSize = 16.sp,
+                                style = MaterialTheme.typography.body1,
+                                color = MaterialTheme.colors.surface)
                         }
-                    },
-                        fontSize = 16.sp,
-                        style = MaterialTheme.typography.body1,
-                        color = MaterialTheme.colors.surface)
+                        if(image){
+                            AsyncImage(
+                                model = imageUrl,
+                                contentDescription = null,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(8.dp))
+                                    .align(Alignment.CenterHorizontally)
+                            )
+                        }
+                    }
                 }
                 Row(modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically) {
@@ -88,7 +125,7 @@ fun Tweet(){
                         modifier = Modifier.clickable {  },
                         verticalAlignment = Alignment.CenterVertically) {
                         Icon(
-                            Icons.Filled.Autorenew,
+                            Icons.Outlined.Autorenew,
                             tint = Color.Gray,
                             contentDescription = "Retweet icon")
                         Spacer(modifier = Modifier.width(4.dp))
@@ -99,7 +136,7 @@ fun Tweet(){
                         modifier = Modifier.clickable {  },
                         verticalAlignment = Alignment.CenterVertically) {
                         Icon(
-                            Icons.Filled.FavoriteBorder,
+                            Icons.Outlined.FavoriteBorder,
                             tint = Color.Gray,
                             contentDescription = "Like icon")
                         Spacer(modifier = Modifier.width(4.dp))
@@ -107,14 +144,14 @@ fun Tweet(){
                     }
                     Spacer(modifier = Modifier.width(30.dp))
                     Icon(
-                        Icons.Filled.Share,
+                        Icons.Outlined.Share,
                         modifier = Modifier.clickable {  },
                         tint = Color.Gray,
                         contentDescription = "Share icon")
                 }
             }
         }
-        Divider(color = Color.LightGray, thickness = 0.5.dp)
+
     }
 }
 
@@ -125,7 +162,7 @@ fun TweetPreview(){
     Twitter_clone_uiTheme {
         // A surface container using the 'background' color from the theme
         Surface() {
-            Tweet()
+            Tweet("", true, "https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif")
         }
     }
 }
